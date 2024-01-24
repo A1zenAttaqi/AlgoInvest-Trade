@@ -2,9 +2,10 @@ import itertools
 import time
 import csv
 from tqdm import tqdm
+
+
+
 start_time = time.time()
-
-
 def read_csv(filename):
     try:
         with open(filename) as csvfile:
@@ -46,7 +47,7 @@ def brute_force_investment(actions, max_budget):
 
 
 def main():
-    file_path = 'actions_data.csv'
+    file_path = 'Data/actions_data.csv'
     actions = read_csv(file_path)
     max_budget = 500
     print(f"\nProcessing {len(actions)} shares for {max_budget}€ :")

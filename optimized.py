@@ -1,9 +1,12 @@
 import time
 import csv
 from tqdm import tqdm
+import sys
+import os
+
+
 
 start_time = time.time()
-
 MAX_BUDGET = 500
 
 def read_csv(filename):
@@ -78,12 +81,17 @@ def display_results(best_combo):
     print("\nTime elapsed : ", time.time() - start_time, "seconds\n")    
     
 
-def main():
-    file_path = 'actions_data.csv'
+def main(filename):
+    file_path = os.path.join("Data", filename)
     actions = read_csv(file_path)
-    print(f"\nProcessing  ({len(actions)} valid shares) for {MAX_BUDGET}€ :")
+    print(f"\nProcessing {file_path} ({len(actions)} valid shares) for {MAX_BUDGET}€:")
     display_results(knapsack(actions))
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) != 2:
+        print("Usage: python your_script.py <filename>")
+        sys.exit(1)
+
+    filename = sys.argv[1]
+    main(filename)
